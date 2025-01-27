@@ -222,7 +222,7 @@ sizeTextBox.FocusLost:Connect(function()
     local collideObject = character:WaitForChild("Torso")
 
     local sizeValue = tonumber(sizeTextBox.Text)
-    if sizeValue and sizeValue >= 0.1 and sizeValue <= 5 then
+    if sizeValue and sizeValue >= 0 and sizeValue <= 15 then
         collideObject.Size = Vector3.new(sizeValue, sizeValue, sizeValue)  -- Изменяем размер
     else
         sizeTextBox.Text = "invalid size"  -- Выводим ошибку, если значение не корректно
@@ -323,7 +323,7 @@ bypassButton.MouseButton1Click:Connect(function()
         -- Устанавливаем прозрачность только один раз
         if not transparencySet then
             collideObject.Transparency = 0.1
-            collideObjectCopy.Transparency = 0.1
+            collideObjectCopy.Transparency = 1
             transparencySet = true  -- Фиксируем установку прозрачности
         end
     end
@@ -538,7 +538,7 @@ sizeTextBox.FocusLost:Connect(function()
     local collideObject = character:WaitForChild("Collide")
 
     local sizeValue = tonumber(sizeTextBox.Text)
-    if sizeValue and sizeValue >= 0 and sizeValue <= 10 then
+    if sizeValue and sizeValue >= 0 and sizeValue <= 15 then
         collideObject.Size = Vector3.new(sizeValue, sizeValue, sizeValue)  -- Изменяем размер
     else
         sizeTextBox.Text = "invalid size"  -- Выводим ошибку, если значение не корректно
