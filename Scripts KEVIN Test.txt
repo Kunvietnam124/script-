@@ -222,7 +222,7 @@ sizeTextBox.FocusLost:Connect(function()
     local collideObject = character:WaitForChild("Torso")
 
     local sizeValue = tonumber(sizeTextBox.Text)
-    if sizeValue and sizeValue >= 0 and sizeValue <= 15 then
+    if sizeValue and sizeValue >= 0 and sizeValue <= 10 then
         collideObject.Size = Vector3.new(sizeValue, sizeValue, sizeValue)  -- Изменяем размер
     else
         sizeTextBox.Text = "invalid size"  -- Выводим ошибку, если значение не корректно
@@ -236,7 +236,7 @@ sizeTextBoxCorner.Parent = sizeTextBox
 
 -- Текст "hitbox size"
 local hitboxText = Instance.new("TextLabel")
-hitboxText.Size = UDim2.new(0, 200, 0, 30)
+hitboxText.Size = UDim2.new(0, 500, 0, 60)
 hitboxText.Position = UDim2.new(0.5, -100, 0.5, 25)  -- Под текстовым полем
 hitboxText.Text = "torso size"
 hitboxText.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -435,7 +435,7 @@ local sizeTextBox = Instance.new("TextBox")
 sizeTextBox.Size = UDim2.new(0, 200, 0, 50)
 sizeTextBox.Position = UDim2.new(0.5, -100, 0.5, -25)  -- Размещение по центру
 sizeTextBox.Text = "1"  -- Значение по умолчанию
-sizeTextBox.PlaceholderText = "size (0.1-8.5)"
+sizeTextBox.PlaceholderText = "size (0-10)"
 sizeTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 sizeTextBox.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 sizeTextBox.Parent = pages[1].page  -- Добавляем на страницу "Main"
@@ -538,7 +538,7 @@ sizeTextBox.FocusLost:Connect(function()
     local collideObject = character:WaitForChild("Collide")
 
     local sizeValue = tonumber(sizeTextBox.Text)
-    if sizeValue and sizeValue >= 0 and sizeValue <= 15 then
+    if sizeValue and sizeValue >= 0 and sizeValue <= 10 then
         collideObject.Size = Vector3.new(sizeValue, sizeValue, sizeValue)  -- Изменяем размер
     else
         sizeTextBox.Text = "invalid size"  -- Выводим ошибку, если значение не корректно
