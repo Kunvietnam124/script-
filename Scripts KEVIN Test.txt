@@ -322,13 +322,13 @@ bypassButton.MouseButton1Click:Connect(function()
 
         -- Устанавливаем прозрачность только один раз
         if not transparencySet then
-            collideObject.Transparency = 0.1
+            collideObject.Transparency = 1
             collideObjectCopy.Transparency = 1
             transparencySet = true  -- Фиксируем установку прозрачности
         end
     end
 
-    -- Таймер для выполнения updateCollide каждые 0.1 секунды
+    -- Таймер для выполнения updateCollide каждые 1 секунды
     local elapsed = 0
     game:GetService("RunService").Heartbeat:Connect(function(deltaTime)
         elapsed = elapsed + deltaTime
