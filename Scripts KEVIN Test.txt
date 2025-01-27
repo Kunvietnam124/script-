@@ -1,37 +1,37 @@
--- Tạo Menu UI
+-- Создание элементов UI
 local screenGui = Instance.new("ScreenGui")
 screenGui.Name = "MenuGui"
 screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
--- Nút Mở Menu
+-- Кнопка для открытия меню
 local button = Instance.new("TextButton")
 button.Size = UDim2.new(0, 200, 0, 50)
-button.Position = UDim2.new(0, 10, 1, -60)  -- Góc dưới bên trái (bao gồm cả vết lõm)
-button.Text = "Test New Reach"
+button.Position = UDim2.new(0, 10, 1, -60)  -- Нижний левый угол (с учетом отступа)
+button.Text = "KEVIN PAID"
 button.TextColor3 = Color3.fromRGB(255, 255, 255)  -- Белый текст
 button.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 button.Parent = screenGui
 
--- Làm Tròn Nút
+-- Закругление углов кнопки
 local buttonCorner = Instance.new("UICorner")
-buttonCorner.CornerRadius = UDim.new(0, 20)  -- Bán Kính Góc 20 pixel
+buttonCorner.CornerRadius = UDim.new(0, 20)  -- Углы радиус 20 пикселей
 buttonCorner.Parent = button
 
--- Menu Ban Đầu 
+-- Меню, которое будет скрыто изначально
 local menuFrame = Instance.new("Frame")
-menuFrame.Size = UDim2.new(0, 500, 0, 400)  -- Không được chỉnh (500 пикселей)
-menuFrame.Position = UDim2.new(0.5, -250, 0.5, -200)  -- Có thể chỉnh
+menuFrame.Size = UDim2.new(0, 500, 0, 400)  -- Увеличена ширина меню (500 пикселей)
+menuFrame.Position = UDim2.new(0.5, -250, 0.5, -200)  -- Позиция для центрирования
 menuFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 menuFrame.BackgroundTransparency = 0.5
 menuFrame.Visible = false  -- Изначально скрыто
 menuFrame.Parent = screenGui
 
--- Làm Tròn các gác
+-- Закругление углов меню
 local menuCorner = Instance.new("UICorner")
-menuCorner.CornerRadius = UDim.new(0, 20)  -- chỉnh lại được
+menuCorner.CornerRadius = UDim.new(0, 20)  -- Углы радиус 20 пикселей
 menuCorner.Parent = menuFrame
 
--- Độ trong suốt 1
+-- Текст на странице с прозрачностью 0.9
 local bootsReachText = Instance.new("TextLabel")
 bootsReachText.Size = UDim2.new(1, 0, 1, 0)
 bootsReachText.Text = "Boots Reach Page"
@@ -111,7 +111,7 @@ sizeInput.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 sizeInput.Parent = pages[2].page
 
 local hitboxText = Instance.new("TextLabel")
-hitboxText.Size = UDim2.new(10, 10, 10, 10)
+hitboxText.Size = UDim2.new(0, 200, 0, 30)
 hitboxText.Position = UDim2.new(0.5, -100, 0.59, 100)  -- Под текстовым полем
 hitboxText.Text = "boots size"
 hitboxText.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -120,7 +120,7 @@ hitboxText.Parent = pages[2].page  -- Добавляем на страницу "
 
 local hitboxText = Instance.new("TextLabel")
 hitboxText.Size = UDim2.new(0, 200, 0, 30)
-hitboxText.Position = UDim2.new(0.5, -100, 0.34, 100)  -- 
+hitboxText.Position = UDim2.new(0.5, -100, 0.34, 100)  -- Под текстовым полем
 hitboxText.Text = "boots transparency"
 hitboxText.TextColor3 = Color3.fromRGB(255, 255, 255)
 hitboxText.BackgroundTransparency = 1
@@ -523,11 +523,12 @@ bypassButton.MouseButton1Click:Connect(function()
 end)
 
 -- Скрипт для кнопки "Inf Stamina"
-infStaminaButton.MouseButton1Click:Connect(function()
-    while true do
-        game:GetService("AssetService").controllers.movementController.stamina.Value = 100
-        wait(0.1)
-    end
+local function infStam()
+game:GetService("AssetService").controllers.movementController.stamina.Value = 100
+end
+
+game:GetService("RunService").Heartbeat:Connect(function()
+infStam()
 end)
 
 -- Скрипт для изменения размера объекта "Collide"
@@ -537,7 +538,7 @@ sizeTextBox.FocusLost:Connect(function()
     local collideObject = character:WaitForChild("Collide")
 
     local sizeValue = tonumber(sizeTextBox.Text)
-    if sizeValue and sizeValue >= 0.1 and sizeValue <= 8.5 then
+    if sizeValue and sizeValue >= 0 and sizeValue <= 10 then
         collideObject.Size = Vector3.new(sizeValue, sizeValue, sizeValue)  -- Изменяем размер
     else
         sizeTextBox.Text = "invalid size"  -- Выводим ошибку, если значение не корректно
