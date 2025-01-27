@@ -111,7 +111,7 @@ sizeInput.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 sizeInput.Parent = pages[2].page
 
 local hitboxText = Instance.new("TextLabel")
-hitboxText.Size = UDim2.new(0, 200, 0, 30)
+hitboxText.Size = UDim2.new(10, 10, 10, 10)
 hitboxText.Position = UDim2.new(0.5, -100, 0.59, 100)  -- Под текстовым полем
 hitboxText.Text = "boots size"
 hitboxText.TextColor3 = Color3.fromRGB(255, 255, 255)
