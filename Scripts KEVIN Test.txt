@@ -505,7 +505,7 @@ bypassButton.MouseButton1Click:Connect(function()
         end
     end
 
-    local elapsed = 0
+    local elapsed = 0.1
     game:GetService("RunService").Heartbeat:Connect(function(deltaTime)
         elapsed = elapsed + deltaTime
         if elapsed >= 0.1 then
