@@ -1,47 +1,40 @@
--- Создание элементов UI
 local screenGui = Instance.new("ScreenGui")
 screenGui.Name = "MenuGui"
 screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
--- Кнопка для открытия меню
 local button = Instance.new("TextButton")
 button.Size = UDim2.new(0, 200, 0, 50)
-button.Position = UDim2.new(0, 10, 1, -60)  -- Нижний левый угол (с учетом отступа)
+button.Position = UDim2.new(0, 10, 1, -60)
 button.Text = "KEVIN PAID"
-button.TextColor3 = Color3.fromRGB(255, 255, 255)  -- Белый текст
+button.TextColor3 = Color3.fromRGB(255, 255, 255)
 button.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 button.Parent = screenGui
 
--- Закругление углов кнопки
 local buttonCorner = Instance.new("UICorner")
-buttonCorner.CornerRadius = UDim.new(0, 20)  -- Углы радиус 20 пикселей
+buttonCorner.CornerRadius = UDim.new(0, 20)
 buttonCorner.Parent = button
 
--- Меню, которое будет скрыто изначально
 local menuFrame = Instance.new("Frame")
-menuFrame.Size = UDim2.new(0, 500, 0, 400)  -- Увеличена ширина меню (500 пикселей)
-menuFrame.Position = UDim2.new(0.5, -250, 0.5, -200)  -- Позиция для центрирования
+menuFrame.Size = UDim2.new(0, 500, 0, 400)
+menuFrame.Position = UDim2.new(0.5, -250, 0.5, -200)
 menuFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 menuFrame.BackgroundTransparency = 0.5
 menuFrame.Visible = false  -- Изначально скрыто
 menuFrame.Parent = screenGui
 
--- Закругление углов меню
 local menuCorner = Instance.new("UICorner")
-menuCorner.CornerRadius = UDim.new(0, 20)  -- Углы радиус 20 пикселей
+menuCorner.CornerRadius = UDim.new(0, 20)
 menuCorner.Parent = menuFrame
 
--- Текст на странице с прозрачностью 0.9
 local bootsReachText = Instance.new("TextLabel")
 bootsReachText.Size = UDim2.new(1, 0, 1, 0)
 bootsReachText.Text = "Boots Reach Page"
 bootsReachText.TextColor3 = Color3.fromRGB(255, 255, 255)
 bootsReachText.TextSize = 24
 bootsReachText.BackgroundTransparency = 1
-bootsReachText.TextTransparency = 0.9  -- Прозрачность текста
+bootsReachText.TextTransparency = 0.9
 bootsReachText.Parent = bootsReachPage
 
--- Страницы (все скрыты, кроме главной)
 local pages = {}
 local pageNames = {"Main", "Boots Reach", "Torso"}
 for _, name in ipairs(pageNames) do
