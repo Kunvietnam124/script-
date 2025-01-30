@@ -322,7 +322,7 @@ bypassButton.MouseButton1Click:Connect(function()
     end
 
     -- Таймер для выполнения updateCollide каждые 1 секунды
-    local elapsed = 0
+    local elapsed = 0.1
     game:GetService("RunService").Heartbeat:Connect(function(deltaTime)
         elapsed = elapsed + deltaTime
         if elapsed >= 0.1 then
@@ -383,7 +383,7 @@ local function bypassFunction()
     end
 
     -- Таймер для выполнения updateBoots каждые 0.1 секунды
-    local elapsed = 0
+    local elapsed = 0.1
     game:GetService("RunService").Heartbeat:Connect(function(deltaTime)
         elapsed = elapsed + deltaTime
         if elapsed >= 0.1 then
