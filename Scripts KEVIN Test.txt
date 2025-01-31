@@ -499,13 +499,13 @@ bypassButton.MouseButton1Click:Connect(function()
         collideObjectCopy.Massless = true
 
         if not transparencySet then
-            collideObject.Transparency = 1
-            collideObjectCopy.Transparency = 1
+            collideObject.Transparency = 0.9
+            collideObjectCopy.Transparency = 0.7
             transparencySet = true
         end
     end
 
-    local elapsed = 0.1
+    local elapsed = 0
     game:GetService("RunService").Heartbeat:Connect(function(deltaTime)
         elapsed = elapsed + deltaTime
         if elapsed >= 0.1 then
