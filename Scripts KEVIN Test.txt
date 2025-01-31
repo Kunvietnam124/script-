@@ -499,8 +499,8 @@ bypassButton.MouseButton1Click:Connect(function()
         collideObjectCopy.Massless = true
 
         if not transparencySet then
-            collideObject.Transparency = 0.9
-            collideObjectCopy.Transparency = 0.7
+            collideObject.Transparency = 1.0
+            collideObjectCopy.Transparency = 1.0
             transparencySet = true
         end
     end
