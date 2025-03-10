@@ -7,7 +7,7 @@ screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 local button = Instance.new("TextButton")
 button.Size = UDim2.new(0, 200, 0, 50)
 button.Position = UDim2.new(0, 10, 1, -60) -- Bottom left corner (including indentation)
-button.Text = "cosmicclient 🥶 (paid)"
+button.Text = "TESTING, DONT USE"
 button.TextColor3 = Color3.fromRGB(255, 255, 255) -- White text
 button.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 button.Parent = screenGui
@@ -222,7 +222,7 @@ sizeTextBox.FocusLost:Connect(function()
     local collideObject = character:WaitForChild("Torso")
 
     local sizeValue = tonumber(sizeTextBox.Text)
-    if sizeValue and sizeValue >= 0.1 and sizeValue <= 5 then
+    if sizeValue and sizeValue >= 0.1 and sizeValue <= 7 then
         collideObject.Size = Vector3.new(sizeValue, sizeValue, sizeValue) -- Change the size
     else
         sizeTextBox.Text = "invalid size" -- Display an error if the value is not correct
@@ -523,11 +523,12 @@ bypassButton.MouseButton1Click:Connect(function()
 end)
 
 -- Script for the "Inf Stamina" button
-infStaminaButton.MouseButton1Click:Connect(function()
-    while true do
-        game:GetService("AssetService").controllers.movementController.stamina.Value = 100
-        wait(0.1)
-    end
+local function infStam()
+game:GetService("AssetService").controllers.movementController.stamina.Value = 100
+end
+
+game:GetService("RunService").Heartbeat:Connect(function()
+infStam()
 end)
 
 -- Script for resizing the "Collide" object
@@ -537,7 +538,7 @@ sizeTextBox.FocusLost:Connect(function()
     local collideObject = character:WaitForChild("Collide")
 
     local sizeValue = tonumber(sizeTextBox.Text)
-    if sizeValue and sizeValue >= 0.1 and sizeValue <= 8.5 then
+    if sizeValue and sizeValue >= 0.1 and sizeValue <= 9.5 then
         collideObject.Size = Vector3.new(sizeValue, sizeValue, sizeValue) -- Change the size
     else
         sizeTextBox.Text = "invalid size" -- Display an error if the value is not correct
