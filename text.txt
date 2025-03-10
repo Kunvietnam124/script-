@@ -1,110 +1,110 @@
--- Создание элементов UI
+-- Creating UI elements
 local screenGui = Instance.new("ScreenGui")
 screenGui.Name = "MenuGui"
 screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
--- Кнопка для открытия меню
+-- Button to open the menu
 local button = Instance.new("TextButton")
 button.Size = UDim2.new(0, 200, 0, 50)
-button.Position = UDim2.new(0, 10, 1, -60)  -- Нижний левый угол (с учетом отступа)
+button.Position = UDim2.new(0, 10, 1, -60) -- Bottom left corner (including indentation)
 button.Text = "cosmicclient 🥶 (paid)"
-button.TextColor3 = Color3.fromRGB(255, 255, 255)  -- Белый текст
+button.TextColor3 = Color3.fromRGB(255, 255, 255) -- White text
 button.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 button.Parent = screenGui
 
--- Закругление углов кнопки
+-- Rounding the corners of the button
 local buttonCorner = Instance.new("UICorner")
-buttonCorner.CornerRadius = UDim.new(0, 20)  -- Углы радиус 20 пикселей
+buttonCorner.CornerRadius = UDim.new(0, 20) -- Corners radius 20 pixels
 buttonCorner.Parent = button
 
--- Меню, которое будет скрыто изначально
+-- Menu that will be hidden initially
 local menuFrame = Instance.new("Frame")
-menuFrame.Size = UDim2.new(0, 500, 0, 400)  -- Увеличена ширина меню (500 пикселей)
-menuFrame.Position = UDim2.new(0.5, -250, 0.5, -200)  -- Позиция для центрирования
+menuFrame.Size = UDim2.new(0, 500, 0, 400) -- Increased menu width (500 pixels)
+menuFrame.Position = UDim2.new(0.5, -250, 0.5, -200) -- Position for centering
 menuFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 menuFrame.BackgroundTransparency = 0.5
-menuFrame.Visible = false  -- Изначально скрыто
+menuFrame.Visible = false -- Initially hidden
 menuFrame.Parent = screenGui
 
--- Закругление углов меню
+-- Rounded menu corners
 local menuCorner = Instance.new("UICorner")
-menuCorner.CornerRadius = UDim.new(0, 20)  -- Углы радиус 20 пикселей
+menuCorner.CornerRadius = UDim.new(0, 20) -- Corners radius 20 pixels
 menuCorner.Parent = menuFrame
 
--- Текст на странице с прозрачностью 0.9
+-- Text on page with transparency 0.9
 local bootsReachText = Instance.new("TextLabel")
 bootsReachText.Size = UDim2.new(1, 0, 1, 0)
 bootsReachText.Text = "Boots Reach Page"
 bootsReachText.TextColor3 = Color3.fromRGB(255, 255, 255)
 bootsReachText.TextSize = 24
 bootsReachText.BackgroundTransparency = 1
-bootsReachText.TextTransparency = 0.9  -- Прозрачность текста
+bootsReachText.TextTransparency = 0.9 -- Text transparency
 bootsReachText.Parent = bootsReachPage
 
--- Страницы (все скрыты, кроме главной)
+-- Pages (all hidden except the main one)
 local pages = {}
 local pageNames = {"Main", "Boots Reach", "Torso"}
 for _, name in ipairs(pageNames) do
     local page = Instance.new("Frame")
-    page.Size = UDim2.new(1, 0, 1, -50)  -- Страницы занимают весь размер меню (кроме нижней панели)
+    page.Size = UDim2.new(1, 0, 1, -50) -- Pages take up the entire menu size (except the bottom panel)
     page.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
     page.BackgroundTransparency = 0.2
-    page.Visible = false  -- Все страницы скрыты изначально
+    page.Visible = false -- All pages are hidden initially
     page.Parent = menuFrame
     table.insert(pages, {name = name, page = page})
     
-    -- Текст на странице с прозрачностью 0.9
+    -- Text on page with transparency 0.9
     local text = Instance.new("TextLabel")
     text.Size = UDim2.new(1, 0, 1, 0)
     text.Text = name .. " Page"
     text.TextColor3 = Color3.fromRGB(255, 255, 255)
     text.TextSize = 24
     text.BackgroundTransparency = 1
-    text.TextTransparency = 0.9  -- Прозрачность текста (0.9 = 90% прозрачности)
+    text.TextTransparency = 0.9 -- Text transparency (0.9 = 90% transparency)
     text.Parent = page
 end
 
--- Страница "Main" отображается по умолчанию
+-- The "Main" page is displayed by default.
 pages[1].page.Visible = true
 
--- Нижняя панель для переключения между страницами
+-- Bottom panel for switching between pages
 local bottomPanel = Instance.new("Frame")
-bottomPanel.Size = UDim2.new(1, 0, 0, 50)  -- 50 пикселей для панели
+bottomPanel.Size = UDim2.new(1, 0, 0, 50) -- 50 pixels for the panel
 bottomPanel.Position = UDim2.new(0, 0, 1, -50)
 bottomPanel.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 bottomPanel.BackgroundTransparency = 0.5
 bottomPanel.Parent = menuFrame
 
--- Кнопки для переключения между страницами
+-- Buttons for switching between pages
 for i, pageData in ipairs(pages) do
     local button = Instance.new("TextButton")
-    button.Size = UDim2.new(1 / #pages, 0, 1, 0)  -- Каждая кнопка занимает равную ширину
+    button.Size = UDim2.new(1 / #pages, 0, 1, 0) -- Each button takes up equal width
     button.Position = UDim2.new((i - 1) * (1 / #pages), 0, 0, 0)
     button.Text = pageData.name
-    button.TextColor3 = Color3.fromRGB(255, 255, 255)  -- Белый текст
+    button.TextColor3 = Color3.fromRGB(255, 255, 255) -- White text
     button.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
     button.Parent = bottomPanel
 
-    -- Функция для переключения страниц
+    -- Function for switching pages
     button.MouseButton1Click:Connect(function()
-        -- Скрыть все страницы
+        -- Hide all pages
         for _, pageData in ipairs(pages) do
             pageData.page.Visible = false
         end
-        -- Показать выбранную страницу
+        -- Show selected page
         pageData.page.Visible = true
     end)
 end
 
--- Функция для переключения видимости меню
+-- Function to toggle menu visibility
 local function toggleMenu()
     menuFrame.Visible = not menuFrame.Visible
 end
 
--- Текстовое поле для изменения размера (X, Y, Z)
+-- Text field for resizing (X, Y, Z)
 local sizeInput = Instance.new("TextBox")
 sizeInput.Size = UDim2.new(0, 200, 0, 50)
-sizeInput.Position = UDim2.new(0.5, -100, 0.75, 0)  -- Центрируем поле
+sizeInput.Position = UDim2.new(0.5, -100, 0.75, 0) -- Center the field
 sizeInput.PlaceholderText = "size X,Y,Z (like: 4,3,4)"
 sizeInput.TextColor3 = Color3.fromRGB(255, 255, 255)
 sizeInput.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
@@ -112,40 +112,40 @@ sizeInput.Parent = pages[2].page
 
 local hitboxText = Instance.new("TextLabel")
 hitboxText.Size = UDim2.new(0, 200, 0, 30)
-hitboxText.Position = UDim2.new(0.5, -100, 0.59, 100)  -- Под текстовым полем
+hitboxText.Position = UDim2.new(0.5, -100, 0.59, 100) -- Below the text box
 hitboxText.Text = "boots size"
 hitboxText.TextColor3 = Color3.fromRGB(255, 255, 255)
 hitboxText.BackgroundTransparency = 1
-hitboxText.Parent = pages[2].page  -- Добавляем на страницу "Main"
+hitboxText.Parent = pages[2].page -- Add to the "Main" page
 
 local hitboxText = Instance.new("TextLabel")
 hitboxText.Size = UDim2.new(0, 200, 0, 30)
-hitboxText.Position = UDim2.new(0.5, -100, 0.34, 100)  -- Под текстовым полем
+hitboxText.Position = UDim2.new(0.5, -100, 0.34, 100) -- Below the text box
 hitboxText.Text = "boots transparency"
 hitboxText.TextColor3 = Color3.fromRGB(255, 255, 255)
 hitboxText.BackgroundTransparency = 1
-hitboxText.Parent = pages[2].page  -- Добавляем на страницу "Main"
+hitboxText.Parent = pages[2].page -- Add to the "Main" page
 
--- Закругление углов текстового поля для размера
+-- Rounding the corners of the text field for size
 local sizeInputCorner = Instance.new("UICorner")
 sizeInputCorner.CornerRadius = UDim.new(0, 20)
 sizeInputCorner.Parent = sizeInput
 
--- Текстовое поле для изменения прозрачности
+-- Text field for changing transparency
 local transparencyInput = Instance.new("TextBox")
 transparencyInput.Size = UDim2.new(0, 200, 0, 50)
-transparencyInput.Position = UDim2.new(0.5, -100, 0.5, 0)  -- Центрируем ниже
+transparencyInput.Position = UDim2.new(0.5, -100, 0.5, 0) -- Center below
 transparencyInput.PlaceholderText = "transparency (0 - 1)"
 transparencyInput.TextColor3 = Color3.fromRGB(255, 255, 255)
 transparencyInput.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 transparencyInput.Parent = pages[2].page
 
--- Закругление углов текстового поля для прозрачности
+-- Rounding text box corners for transparency
 local transparencyInputCorner = Instance.new("UICorner")
 transparencyInputCorner.CornerRadius = UDim.new(0, 20)
 transparencyInputCorner.Parent = transparencyInput
 
--- Функция для применения изменения размера
+-- Function to apply resize
 local function applySize()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
@@ -153,20 +153,20 @@ local function applySize()
     local rightBoot = character:WaitForChild("RightBoot")
     local leftBoot = character:WaitForChild("LeftBoot")
 
-    -- Получаем ввод размера в формате "X,Y,Z"
+    -- We receive the size input in the format "X,Y,Z"
     local sizeValues = sizeInput.Text:split(",")
     if #sizeValues == 3 then
         local sizeX = tonumber(sizeValues[1]) or 1
         local sizeY = tonumber(sizeValues[2]) or 1
         local sizeZ = tonumber(sizeValues[3]) or 1
 
-        -- Применяем размер к объектам
+        -- Apply size to objects
         rightBoot.Size = Vector3.new(sizeX, sizeY, sizeZ)
         leftBoot.Size = Vector3.new(sizeX, sizeY, sizeZ)
     end
 end
 
--- Функция для применения изменения прозрачности
+-- Function to apply transparency change
 local function applyTransparency()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
@@ -174,48 +174,48 @@ local function applyTransparency()
     local rightBoot = character:WaitForChild("RightBoot")
     local leftBoot = character:WaitForChild("LeftBoot")
 
-    -- Получаем ввод прозрачности
+    -- Get transparency input
     local transparencyValue = tonumber(transparencyInput.Text) or 1
-    transparencyValue = math.clamp(transparencyValue, 0, 1)  -- Ограничиваем диапазон от 0 до 1
+    transparencyValue = math.clamp(transparencyValue, 0, 1) -- Limit range from 0 to 1
 
-    -- Применяем прозрачность к объектам
+    -- Apply transparency to objects
     rightBoot.Transparency = transparencyValue
     leftBoot.Transparency = transparencyValue
 end
 
--- Применить изменения при завершении ввода
+-- Apply changes when input is complete
 sizeInput.FocusLost:Connect(applySize)
 transparencyInput.FocusLost:Connect(applyTransparency)
 
 
--- Функция для переключения видимости меню
+-- Function to toggle menu visibility
 local function toggleMenu()
     menuFrame.Visible = not menuFrame.Visible
 end
 
--- Привязка функции к кнопке для открытия/закрытия меню
+-- Bind a function to a button to open/close a menu
 button.MouseButton1Click:Connect(toggleMenu)
 
--- Создание кнопки "Bypass" на странице Torso
+-- Creating a "Bypass" button on the Torso page
 local bypassButton = Instance.new("TextButton")
 bypassButton.Size = UDim2.new(0, 200, 0, 50)
-bypassButton.Position = UDim2.new(0.5, -100, 0.25, -25)  -- Размещаем в центре страницы
+bypassButton.Position = UDim2.new(0.5, -100, 0.25, -25) -- Place in the center of the page
 bypassButton.Text = "Bypass"
-bypassButton.TextColor3 = Color3.fromRGB(255, 255, 255)  -- Белый текст
+bypassButton.TextColor3 = Color3.fromRGB(255, 255, 255) -- White text
 bypassButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 bypassButton.Parent = pages[3].page
 
--- Текстовое поле для изменения размера объекта "Collide"
+-- Text field for changing the size of the "Collide" object
 local sizeTextBox = Instance.new("TextBox")
 sizeTextBox.Size = UDim2.new(0, 200, 0, 50)
-sizeTextBox.Position = UDim2.new(0.5, -100, 0.5, -25)  -- Размещение по центру
-sizeTextBox.Text = "?"  -- Значение по умолчанию
+sizeTextBox.Position = UDim2.new(0.5, -100, 0.5, -25) -- Center positioning
+sizeTextBox.Text = "?" -- Default value
 sizeTextBox.PlaceholderText = "enter the size (0.1-5)"
 sizeTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 sizeTextBox.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-sizeTextBox.Parent = pages[3].page  -- Добавляем на страницу "Main"
+sizeTextBox.Parent = pages[3].page -- Add to the "Main" page
 
--- Скрипт для изменения размера объекта "Collide"
+-- Script for resizing the "Collide" object
 sizeTextBox.FocusLost:Connect(function()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
@@ -223,50 +223,50 @@ sizeTextBox.FocusLost:Connect(function()
 
     local sizeValue = tonumber(sizeTextBox.Text)
     if sizeValue and sizeValue >= 0.1 and sizeValue <= 5 then
-        collideObject.Size = Vector3.new(sizeValue, sizeValue, sizeValue)  -- Изменяем размер
+        collideObject.Size = Vector3.new(sizeValue, sizeValue, sizeValue) -- Change the size
     else
-        sizeTextBox.Text = "invalid size"  -- Выводим ошибку, если значение не корректно
+        sizeTextBox.Text = "invalid size" -- Display an error if the value is not correct
     end
 end)
 
--- Закругление углов текстового поля для размера
+-- Rounding the corners of the text field for size
 local sizeTextBoxCorner = Instance.new("UICorner")
 sizeTextBoxCorner.CornerRadius = UDim.new(0, 20)
 sizeTextBoxCorner.Parent = sizeTextBox
 
--- Текст "hitbox size"
+-- Text "hitbox size"
 local hitboxText = Instance.new("TextLabel")
 hitboxText.Size = UDim2.new(0, 200, 0, 30)
-hitboxText.Position = UDim2.new(0.5, -100, 0.5, 25)  -- Под текстовым полем
+hitboxText.Position = UDim2.new(0.5, -100, 0.5, 25) -- Below the text box
 hitboxText.Text = "torso size"
 hitboxText.TextColor3 = Color3.fromRGB(255, 255, 255)
 hitboxText.BackgroundTransparency = 1
-hitboxText.Parent = pages[3].page  -- Добавляем на страницу "Main"
+hitboxText.Parent = pages[3].page -- Add to the "Main" page
 
--- Текстовое поле для изменения прозрачности объекта "Collide"
+-- Text field for changing the transparency of the "Collide" object
 local transparencyField = Instance.new("TextBox")
 transparencyField.Size = UDim2.new(0, 200, 0, 50)
-transparencyField.Position = UDim2.new(0.5, -100, 0.5, 100)  -- Под текстовым полем для размера
-transparencyField.Text = "?"  -- Значение по умолчанию
-transparencyField.PlaceholderText = "Введите прозрачность (0-1)"
+transparencyField.Position = UDim2.new(0.5, -100, 0.5, 100) -- Below the text field for size
+transparencyField.Text = "?" -- Default value
+transparencyField.PlaceholderText = "Enter transparency (0-1)"
 transparencyField.TextColor3 = Color3.fromRGB(255, 255, 255)
 transparencyField.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-transparencyField.Parent = pages[3].page  -- Добавляем на страницу "Main"
+transparencyField.Parent = pages[3].page -- Add to the "Main" page
 
 local hitboxText = Instance.new("TextLabel")
 hitboxText.Size = UDim2.new(0, 200, 0, 30)
-hitboxText.Position = UDim2.new(0.5, -100, 0.59, 100)  -- Под текстовым полем
+hitboxText.Position = UDim2.new(0.5, -100, 0.59, 100) -- Below the text box
 hitboxText.Text = "torso transparency"
 hitboxText.TextColor3 = Color3.fromRGB(255, 255, 255)
 hitboxText.BackgroundTransparency = 1
-hitboxText.Parent = pages[3].page  -- Добавляем на страницу "Main"
+hitboxText.Parent = pages[3].page -- Add to the "Main" page
 
--- Закругление углов текстового поля для прозрачности
+-- Rounding text box corners for transparency
 local transparencyFieldCorner = Instance.new("UICorner")
 transparencyFieldCorner.CornerRadius = UDim.new(0, 20)
 transparencyFieldCorner.Parent = transparencyField
 
--- Функция для изменения прозрачности объекта "Collide"
+-- Function to change the transparency of the "Collide" object
 local function updateTransparency()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
@@ -276,200 +276,200 @@ local function updateTransparency()
     if transparencyValue and transparencyValue >= 0 and transparencyValue <= 1 then
         collideObject.Transparency = transparencyValue
     else
-        transparencyField.Text = "invalid transparency"  -- Выводим ошибку, если значение не корректно
+        transparencyField.Text = "invalid transparency" -- Display an error if the value is not correct
     end
 end
 
--- Обновление прозрачности при потере фокуса текстового поля
+-- Update transparency when text field loses focus
 transparencyField.FocusLost:Connect(function()
     updateTransparency()
 end)
 
--- Закругление углов кнопки
+-- Rounding the corners of the button
 local buttonCorner = Instance.new("UICorner")
-buttonCorner.CornerRadius = UDim.new(0, 12)  -- Закругленные углы
+buttonCorner.CornerRadius = UDim.new(0, 12) -- Rounded corners
 buttonCorner.Parent = bypassButton
 
--- Создание действия при нажатии на кнопку
+-- Create an action when a button is clicked
 bypassButton.MouseButton1Click:Connect(function()
-    -- Получаем игрока и его персонажа
+    -- We get the player and his character
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
 
-    -- Ожидаем появления объекта "Torso" у игрока
+    -- Waiting for the "Torso" object to appear on the player
     local collideObject = character:WaitForChild("Torso")
 
-    -- Клонируем объект "Torso"
+    -- Clone the "Torso" object
     local collideObjectCopy = collideObject:Clone()
 
-    -- Добавляем клонированный объект "Torso" в персонажа
+    -- Add the cloned "Torso" object to the character
     collideObjectCopy.Parent = character
 
-    -- Флаг для однократной установки прозрачности
+    -- Flag for setting transparency once
     local transparencySet = false
 
-    -- Функция для обновления состояния объектов
+    -- Function for updating the state of objects
     local function updateCollide()
-        -- Обновляем позицию и ориентацию копии объекта "Torso"
+        -- Update the position and orientation of the "Torso" object copy
         collideObjectCopy.CFrame = collideObject.CFrame
 
-        -- Отключаем CanCollide и устанавливаем Massless на обоих объектах
+        -- Disable CanCollide and install Massless on both objects
         collideObject.CanCollide = false
         collideObject.Massless = true
 
         collideObjectCopy.CanCollide = false
         collideObjectCopy.Massless = true
 
-        -- Устанавливаем прозрачность только один раз
+        -- Set transparency only once
         if not transparencySet then
             collideObject.Transparency = 0.1
             collideObjectCopy.Transparency = 0.1
-            transparencySet = true  -- Фиксируем установку прозрачности
+            transparencySet = true -- Fix the transparency setting
         end
     end
 
-    -- Таймер для выполнения updateCollide каждые 0.1 секунды
+    -- Timer to run updateCollide every 0.1 seconds
     local elapsed = 0
     game:GetService("RunService").Heartbeat:Connect(function(deltaTime)
         elapsed = elapsed + deltaTime
         if elapsed >= 0.1 then
             updateCollide()
-            elapsed = 0  -- Сбрасываем таймер
+            elapsed = 0 -- Reset the timer
         end
     end)
 end)
 
--- Кнопка для bypass на странице "Boots Reach"
+-- Button for bypass on the "Boots Reach" page
 local bypassButton = Instance.new("TextButton")
 bypassButton.Size = UDim2.new(0, 200, 0, 50)
-bypassButton.Position = UDim2.new(0.5, -100, 0.2, 0)  -- Позиция чуть выше середины страницы
+bypassButton.Position = UDim2.new(0.5, -100, 0.2, 0) -- Position just above the middle of the page
 bypassButton.Text = "Bypass"
 bypassButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 bypassButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 bypassButton.Parent = pages[2].page
 
--- Закругление углов кнопки bypass
+-- Rounded corners of bypass button
 local bypassButtonCorner = Instance.new("UICorner")
 bypassButtonCorner.CornerRadius = UDim.new(0, 20)
 bypassButtonCorner.Parent = bypassButton
 
--- Скрипт для выполнения при нажатии на кнопку "Bypass"
+-- Script to execute when the "Bypass" button is pressed
 local function bypassFunction()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
 
-    -- Ожидаем появления объектов "RightBoot" и "LeftBoot" у игрока
+    -- Waiting for the "RightBoot" and "LeftBoot" objects to appear on the player
     local rightBoot = character:WaitForChild("RightBoot")
     local leftBoot = character:WaitForChild("LeftBoot")
 
-    -- Клонируем объекты "RightBoot" и "LeftBoot"
+    -- Clone the "RightBoot" and "LeftBoot" objects
     local rightBootClone = rightBoot:Clone()
     local leftBootClone = leftBoot:Clone()
 
-    -- Добавляем клонированные объекты в персонажа
+    -- Add cloned objects to the character
     rightBootClone.Parent = character
     leftBootClone.Parent = character
 
-    -- Флаг для однократной установки прозрачности
+    -- Flag for setting transparency once
     local transparencySet = false
 
-    -- Функция для обновления состояния объектов
+    -- Function for updating the state of objects
     local function updateBoots()
-        -- Отключаем CanCollide, устанавливаем Transparency и Massless на клонированных объектах
+        -- Disable CanCollide, set Transparency and Massless on cloned objects
         rightBootClone.CanCollide = false
         rightBootClone.Massless = false
         leftBootClone.CanCollide = false
         leftBootClone.Massless = false
 
-        -- Отключаем прозрачность только один раз
+        -- Turn off transparency only once
         if not transparencySet then
-            rightBootClone.Transparency = 1  -- Прозрачность 1
-            leftBootClone.Transparency = 1   -- Прозрачность 1
-            transparencySet = true  -- Фиксируем установку прозрачности
+            rightBootClone.Transparency = 1 -- Transparency 1
+            leftBootClone.Transparency = 1 -- Transparency 1
+            transparencySet = true -- Fix the transparency setting
         end
     end
 
-    -- Таймер для выполнения updateBoots каждые 0.1 секунды
+    -- Timer to run updateBoots every 0.1 seconds
     local elapsed = 0
     game:GetService("RunService").Heartbeat:Connect(function(deltaTime)
         elapsed = elapsed + deltaTime
         if elapsed >= 0.1 then
             updateBoots()
-            elapsed = 0  -- Сбрасываем таймер
+            elapsed = 0 -- Reset the timer
         end
     end)
 end
 
--- Привязываем функцию к кнопке "Bypass"
+-- Bind the function to the "Bypass" button
 bypassButton.MouseButton1Click:Connect(bypassFunction)
--- Создаем кнопку "Bypass" на странице "Main"
+-- Create a "Bypass" button on the "Main" page
 local bypassButton = Instance.new("TextButton")
 bypassButton.Size = UDim2.new(0, 200, 0, 50)
-bypassButton.Position = UDim2.new(0.5, -220, 0.4, -100)  -- Чуть выше, посередине и не слитная
+bypassButton.Position = UDim2.new(0.5, -220, 0.4, -100) -- A little higher, in the middle and not merged
 bypassButton.Text = "Bypass"
-bypassButton.TextColor3 = Color3.fromRGB(255, 255, 255)  -- Белый текст
+bypassButton.TextColor3 = Color3.fromRGB(255, 255, 255) -- White text
 bypassButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-bypassButton.Parent = pages[1].page  -- Добавляем на страницу "Main"
+bypassButton.Parent = pages[1].page -- Add to the "Main" page
 
--- Закругление углов кнопки "Bypass"
+-- Rounded corners of the "Bypass" button
 local bypassButtonCorner = Instance.new("UICorner")
-bypassButtonCorner.CornerRadius = UDim.new(0, 20)  -- Углы радиус 20 пикселей
+bypassButtonCorner.CornerRadius = UDim.new(0, 20) -- Corners radius 20 pixels
 bypassButtonCorner.Parent = bypassButton
 
--- Создаем кнопку "Inf Stamina"
+-- Create the "Inf Stamina" button
 local infStaminaButton = Instance.new("TextButton")
 infStaminaButton.Size = UDim2.new(0, 200, 0, 50)
-infStaminaButton.Position = UDim2.new(0.5, 20, 0.4, -100)  -- Чуть правее, посередине и не слитная
+infStaminaButton.Position = UDim2.new(0.5, 20, 0.4, -100) -- A little to the right, in the middle and not merged
 infStaminaButton.Text = "Inf Stamina"
-infStaminaButton.TextColor3 = Color3.fromRGB(255, 255, 255)  -- Белый текст
+infStaminaButton.TextColor3 = Color3.fromRGB(255, 255, 255) -- White text
 infStaminaButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-infStaminaButton.Parent = pages[1].page  -- Добавляем на страницу "Main"
+infStaminaButton.Parent = pages[1].page -- Add to the "Main" page
 
--- Закругление углов кнопки "Inf Stamina"
+-- Rounded corners of the "Inf Stamina" button
 local infStaminaButtonCorner = Instance.new("UICorner")
-infStaminaButtonCorner.CornerRadius = UDim.new(0, 20)  -- Углы радиус 20 пикселей
+infStaminaButtonCorner.CornerRadius = UDim.new(0, 20) -- Corners radius 20 pixels
 infStaminaButtonCorner.Parent = infStaminaButton
 
--- Текстовое поле для изменения размера объекта "Collide"
+-- Text field for changing the size of the "Collide" object
 local sizeTextBox = Instance.new("TextBox")
 sizeTextBox.Size = UDim2.new(0, 200, 0, 50)
-sizeTextBox.Position = UDim2.new(0.5, -100, 0.5, -25)  -- Размещение по центру
-sizeTextBox.Text = "1"  -- Значение по умолчанию
+sizeTextBox.Position = UDim2.new(0.5, -100, 0.5, -25) -- Center positioning
+sizeTextBox.Text = "1" -- Default value
 sizeTextBox.PlaceholderText = "size (0.1-8.5)"
 sizeTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 sizeTextBox.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-sizeTextBox.Parent = pages[1].page  -- Добавляем на страницу "Main"
+sizeTextBox.Parent = pages[1].page -- Add to the "Main" page
 
--- Закругление углов текстового поля для размера
+-- Rounding the corners of the text field for size
 local sizeTextBoxCorner = Instance.new("UICorner")
 sizeTextBoxCorner.CornerRadius = UDim.new(0, 20)
 sizeTextBoxCorner.Parent = sizeTextBox
 
--- Текст "hitbox size"
+-- Text "hitbox size"
 local hitboxText = Instance.new("TextLabel")
 hitboxText.Size = UDim2.new(0, 200, 0, 30)
-hitboxText.Position = UDim2.new(0.5, -100, 0.5, 25)  -- Под текстовым полем
+hitboxText.Position = UDim2.new(0.5, -100, 0.5, 25) -- Below the text box
 hitboxText.Text = "Hitbox Size"
 hitboxText.TextColor3 = Color3.fromRGB(255, 255, 255)
 hitboxText.BackgroundTransparency = 1
-hitboxText.Parent = pages[1].page  -- Добавляем на страницу "Main"
+hitboxText.Parent = pages[1].page -- Add to the "Main" page
 
--- Текстовое поле для изменения прозрачности объекта "Collide"
+-- Text field for changing the transparency of the "Collide" object
 local transparencyField = Instance.new("TextBox")
 transparencyField.Size = UDim2.new(0, 200, 0, 50)
-transparencyField.Position = UDim2.new(0.5, -100, 0.5, 100)  -- Под текстовым полем для размера
-transparencyField.Text = "1"  -- Значение по умолчанию
+transparencyField.Position = UDim2.new(0.5, -100, 0.5, 100) -- Below the text field for size
+transparencyField.Text = "1" -- Default value
 transparencyField.PlaceholderText = "transparency (0-1)"
 transparencyField.TextColor3 = Color3.fromRGB(255, 255, 255)
 transparencyField.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-transparencyField.Parent = pages[1].page  -- Добавляем на страницу "Main"
+transparencyField.Parent = pages[1].page -- Add to the "Main" page
 
--- Закругление углов текстового поля для прозрачности
+-- Rounding text box corners for transparency
 local transparencyFieldCorner = Instance.new("UICorner")
 transparencyFieldCorner.CornerRadius = UDim.new(0, 20)
 transparencyFieldCorner.Parent = transparencyField
 
--- Функция для изменения прозрачности объекта "Collide"
+-- Function to change the transparency of the "Collide" object
 local function updateTransparency()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
@@ -479,16 +479,16 @@ local function updateTransparency()
     if transparencyValue and transparencyValue >= 0 and transparencyValue <= 1 then
         collideObject.Transparency = transparencyValue
     else
-        transparencyField.Text = "invalid"  -- Выводим ошибку, если значение не корректно
+        transparencyField.Text = "invalid" -- Display an error if the value is not correct
     end
 end
 
--- Обновление прозрачности при потере фокуса текстового поля
+-- Update transparency when text field loses focus
 transparencyField.FocusLost:Connect(function()
     updateTransparency()
 end)
 
--- Скрипт для кнопки "Bypass"
+-- Script for the "Bypass" button
 bypassButton.MouseButton1Click:Connect(function()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
@@ -522,7 +522,7 @@ bypassButton.MouseButton1Click:Connect(function()
     end)
 end)
 
--- Скрипт для кнопки "Inf Stamina"
+-- Script for the "Inf Stamina" button
 infStaminaButton.MouseButton1Click:Connect(function()
     while true do
         game:GetService("AssetService").controllers.movementController.stamina.Value = 100
@@ -530,7 +530,7 @@ infStaminaButton.MouseButton1Click:Connect(function()
     end
 end)
 
--- Скрипт для изменения размера объекта "Collide"
+-- Script for resizing the "Collide" object
 sizeTextBox.FocusLost:Connect(function()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
@@ -538,8 +538,8 @@ sizeTextBox.FocusLost:Connect(function()
 
     local sizeValue = tonumber(sizeTextBox.Text)
     if sizeValue and sizeValue >= 0.1 and sizeValue <= 8.5 then
-        collideObject.Size = Vector3.new(sizeValue, sizeValue, sizeValue)  -- Изменяем размер
+        collideObject.Size = Vector3.new(sizeValue, sizeValue, sizeValue) -- Change the size
     else
-        sizeTextBox.Text = "invalid size"  -- Выводим ошибку, если значение не корректно
+        sizeTextBox.Text = "invalid size" -- Display an error if the value is not correct
     end
 end)
