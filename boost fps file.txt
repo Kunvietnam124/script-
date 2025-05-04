@@ -63,7 +63,7 @@ if not _G.Settings then
             ["No Camera Effects"] = true,
             ["No Clothes"] = true,
             ["Low Water Graphics"] = true,
-            ["No Shadows"] = true,
+            ["No Shadows"] = false,
             ["Low Rendering"] = true,
             ["Low Quality Parts"] = true,
             ["Low Quality Models"] = true,
