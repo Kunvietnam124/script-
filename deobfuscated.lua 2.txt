@@ -1,0 +1,934 @@
+local l_ReplicatedStorage_0 = game:GetService("ReplicatedStorage");
+local _ = game:GetService("PhysicsService");
+local l_RunService_0 = game:GetService("RunService");
+local l_Players_0 = game:GetService("Players");
+local l_Workspace_0 = game:GetService("Workspace");
+local _ = game:GetService("TeleportService");
+local l_LocalPlayer_0 = l_Players_0.LocalPlayer;
+local v7 = l_LocalPlayer_0.Character or l_LocalPlayer_0.CharacterAdded:Wait();
+local _ = v7:WaitForChild("HumanoidRootPart");
+local _ = v7:FindFirstChildOfClass("Humanoid");
+local _ = l_Workspace_0:WaitForChild("game", 10);
+local v11 = l_ReplicatedStorage_0:WaitForChild("network", 10):WaitForChild("Shared", 10);
+local l_Shared_0 = l_ReplicatedStorage_0.network.Shared;
+local v13 = "Found";
+local v14 = "Here";
+local v15 = "hi";
+local _ = nil;
+local _ = 0;
+local _ = 0.1;
+local _ = BrickColor.new(Color3.fromRGB(237, 234, 234));
+local v20 = false;
+local v21 = false;
+local v22 = false;
+local v23 = {};
+local v24 = {};
+local v25 = Color3.fromRGB(96, 205, 255);
+local v26 = 0;
+local v27 = {};
+local v28 = 500;
+local v29 = 1;
+local _ = nil;
+local _ = {
+    OriginalProperties = nil, 
+    IsPaused = false
+};
+local v32 = {};
+local _ = {};
+local v34 = {
+    None = "", 
+    ["Fist Pump"] = "rbxassetid://18545628047", 
+    ["Right Here Right Now"] = "rbxassetid://18548417924", 
+    Tshabalala = "rbxassetid://18673725349", 
+    ["Archer Slide"] = "rbxassetid://18560742891", 
+    ["Point Up"] = "rbxassetid://18563918200", 
+    ["The Griddy"] = "rbxassetid://18774591442", 
+    Boxing = "rbxassetid://18584841032", 
+    Glorious = "rbxassetid://18584847345", 
+    Yoga = "rbxassetid://18673721840", 
+    Calma = "rbxassetid://18673636723", 
+    Shivering = "rbxassetid://18673647071", 
+    ["Folded Arms Knee Slide"] = "rbxassetid://18673668417", 
+    Gunleann = "rbxassetid://18673677815", 
+    Knockout = "rbxassetid://18673687513", 
+    ["Salute Knee Slide"] = "rbxassetid://18673699107", 
+    Meditation = "rbxassetid://18673705797", 
+    ["Ice Cold"] = "rbxassetid://18745497583", 
+    Catwalk = "rbxassetid://18775156520", 
+    Backflip = "rbxassetid://18926012773", 
+    ["Double Siuuu"] = "rbxassetid://18926038745", 
+    Prayerr = "rbxassetid://18926177589", 
+    ["Folded Arms"] = "rbxassetid://18926195587", 
+    ["Spanish Dance"] = "rbxassetid://18926223307", 
+    Pigeon = "rbxassetid://109637224628241", 
+    ["Strange Dance"] = ""
+};
+local _ = {
+    None = "", 
+    Card = "rbxassetid://16096886456", 
+    Penalty = "rbxassetid://16096985868", 
+    Warning = "rbxassetid://16096947622", 
+    Advantage = "rbxassetid://16097904170", 
+    Whistle = "rbxassetid://16096892797"
+};
+local _ = {
+    "Default", 
+    "Central Coast Stadium", 
+    "Community Arena", 
+    "Custom Team", 
+    "Eastwood Park", 
+    "Exmouth Memorial Park", 
+    "Follow Your Dreams Arena", 
+    "Futbol Arena", 
+    "Gorgie Park", 
+    "Horizon Stadium", 
+    "Lochview Stadium", 
+    "Sanctuary Lane", 
+    "Skyline Field", 
+    "Square Arena", 
+    "Stade de Futbol", 
+    "The Range", 
+    "Training Ground", 
+    "Westbridge Road"
+};
+local v37 = {};
+local v38 = {};
+local v39 = {
+    ["Away Top Left"] = CFrame.new(13, 7.9000001, 359.299988, 1, 0, 0, 0, 1, 0, 0, 0, 1), 
+    ["Away Top Right"] = CFrame.new(-13.8999996, 7.9000001, 359.299988, 1, 0, 0, 0, 1, 0, 0, 0, 1), 
+    ["Home Top Left"] = CFrame.new(-13.8999996, 9.60000038, -354.700012, 1, 0, 0, 0, 1, 0, 0, 0, 1), 
+    ["Home Top Right"] = CFrame.new(13.8000002, 9.60000038, -354.700012, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+};
+local v40 = v39["Away Top Left"];
+local function v48(v41, v42) --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: l_LocalPlayer_0 (ref)
+    if not v41 or v41 == "" then
+        return;
+    else
+        local l_Humanoid_1 = (l_LocalPlayer_0.Character or l_LocalPlayer_0.CharacterAdded:Wait()):FindFirstChildOfClass("Humanoid");
+        if not l_Humanoid_1 then
+            return;
+        else
+            local l_Animator_0 = l_Humanoid_1:FindFirstChild("Animator");
+            if not l_Animator_0 then
+                l_Animator_0 = Instance.new("Animator");
+                l_Animator_0.Parent = l_Humanoid_1;
+            end;
+            local l_Animation_0 = Instance.new("Animation");
+            l_Animation_0.AnimationId = v41;
+            l_Animation_0.Name = v42;
+            local l_status_0, l_result_0 = pcall(function() --[[ Line: 0 ]] --[[ Name:  ]]
+                -- upvalues: l_Animator_0 (ref), l_Animation_0 (ref)
+                return l_Animator_0:LoadAnimation(l_Animation_0);
+            end);
+            if l_status_0 and l_result_0 then
+                l_result_0:Play();
+            end;
+            return;
+        end;
+    end;
+end;
+local function v53(v49) --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: v11 (ref), l_ReplicatedStorage_0 (ref)
+    local l_v11_FirstChild_0 = v11:FindFirstChild(v49);
+    if l_v11_FirstChild_0 and (l_v11_FirstChild_0:IsA("RemoteEvent") or l_v11_FirstChild_0:IsA("RemoteFunction")) then
+        return l_v11_FirstChild_0;
+    else
+        for _, v52 in pairs(l_ReplicatedStorage_0:GetDescendants()) do
+            if v52:IsA("RemoteEvent") or v52:IsA("RemoteFunction") and v52.Name == v49 then
+                return v52;
+            end;
+        end;
+        return nil;
+    end;
+end;
+local function v57() --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: l_Players_0 (ref), l_LocalPlayer_0 (ref)
+    local v54 = {};
+    for _, v56 in pairs(l_Players_0:GetPlayers()) do
+        if v56 ~= l_LocalPlayer_0 then
+            table.insert(v54, v56.Name);
+        end;
+    end;
+    return v54;
+end;
+local function v60(v58) --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: v53 (ref), v15 (ref)
+    if v58 and v58.Character then
+        local v59 = v53(v15);
+        if v59 then
+            v59:FireServer(1000, "ballAttribute", v58.Character, "serverRagdollBinder", true);
+            v59:FireServer(1000, "ballAttribute", v58.Character, "clientRagdollBinder", true);
+        end;
+    end;
+end;
+local function v63(v61) --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: v53 (ref), v15 (ref)
+    if v61 and v61.Character then
+        local v62 = v53(v15);
+        if v62 then
+            v62:FireServer(1000, "ballAttribute", v61.Character, "serverRagdollBinder", false);
+            v62:FireServer(1000, "ballAttribute", v61.Character, "clientRagdollBinder", false);
+        end;
+    end;
+end;
+local function _() --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: v57 (ref)
+    local v64 = v57();
+    local l_RagdollPlayerDropdown_0 = Tabs.OP:FindFirstChild("RagdollPlayerDropdown");
+    local l_UnragdollPlayerDropdown_0 = Tabs.OP:FindFirstChild("UnragdollPlayerDropdown");
+    if l_RagdollPlayerDropdown_0 then
+        l_RagdollPlayerDropdown_0:SetValues(v64);
+    end;
+    if l_UnragdollPlayerDropdown_0 then
+        l_UnragdollPlayerDropdown_0:SetValues(v64);
+    end;
+end;
+local function _(v68) --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: v37 (ref), v38 (ref)
+    for v69, v70 in pairs(v37) do
+        if v70 and typeof(v70.chargeSpeed) == "number" then
+            v70.chargeSpeed = v38[v69] * v68;
+        end;
+    end;
+end;
+local function v74() --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: v24 (ref)
+    for _, v73 in pairs(v24) do
+        v73:Destroy();
+    end;
+    v24 = {};
+end;
+local function v82(v75, v76, v77, _) --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: v74 (ref), v25 (ref), v26 (ref), l_Workspace_0 (ref), v24 (ref)
+    v74();
+    for v79 = 0, 1, 1 / 20 do
+        local v80 = (1 - v79) ^ 2 * v75 + 2 * (1 - v79) * v79 * v77 + v79 ^ 2 * v76;
+        local l_Part_0 = Instance.new("Part");
+        l_Part_0.Size = Vector3.new(0.5, 0.5, 0.5);
+        l_Part_0.Position = v80;
+        l_Part_0.Anchored = true;
+        l_Part_0.CanCollide = false;
+        l_Part_0.Color = v25;
+        l_Part_0.Transparency = v26;
+        l_Part_0.Material = Enum.Material.Neon;
+        l_Part_0.Parent = l_Workspace_0;
+        table.insert(v24, l_Part_0);
+    end;
+end;
+local function v106(v83) --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: v40 (ref), v39 (ref), v22 (ref), v82 (ref), l_RunService_0 (ref), v74 (ref), v23 (ref)
+    local l_Position_0 = v83.Position;
+    local l_Position_1 = v40.Position;
+    if not l_Position_1 or not l_Position_1.X or not l_Position_1.Y or not l_Position_1.Z then
+        l_Position_1 = v39["Away Top Left"].Position;
+    end;
+    local l_Magnitude_0 = (l_Position_1 - l_Position_0).Magnitude;
+    local v87 = (l_Position_0 + l_Position_1) / 2;
+    local l_Value_0 = Options.MaxHeightSlider.Value;
+    local l_Value_1 = Options.XArchSlider.Value;
+    local l_Value_2 = Options.PowerSlider.Value;
+    local v91 = math.max(l_Value_0, l_Magnitude_0 * 0.1);
+    v91 = math.clamp(v91, 2, 50);
+    local v92 = math.max(l_Position_0.Y, l_Position_1.Y) + v91;
+    local v93 = math.sign(l_Position_1.X - l_Position_0.X);
+    local v94 = math.abs(l_Position_1.X - l_Position_0.X) * l_Value_1 * 0.5 * 3;
+    local v95 = v87.X + v94 * v93;
+    local v96 = Vector3.new(v95, v92, v87.Z);
+    local v97 = Instance.new("BodyAngularVelocity", v83);
+    v97.MaxTorque = Vector3.new(100000, 100000, 100000);
+    v97.P = 10000;
+    v97.AngularVelocity = Vector3.new(math.random(-1, 1), math.random(-1, 1), math.random(-1, 1)) * 1500;
+    if v22 then
+        v82(l_Position_0, l_Position_1, v96, l_Magnitude_0 / l_Value_2);
+    end;
+    local v98 = 0;
+    local v99 = 1 / (l_Magnitude_0 / l_Value_2 * 60);
+    local v100 = Vector3.new(0, -32, 0);
+    local v101 = nil;
+    v101 = l_RunService_0.Heartbeat:Connect(function() --[[ Line: 0 ]] --[[ Name:  ]]
+        -- upvalues: v98 (ref), v99 (ref), v101 (ref), v83 (ref), v74 (ref), v23 (ref), l_Position_0 (ref), v96 (ref), l_Position_1 (ref), v100 (ref)
+        v98 = v98 + v99;
+        if v98 >= 1 then
+            v98 = 1;
+            v101:Disconnect();
+            if v83:FindFirstChildOfClass("BodyAngularVelocity") then
+                v83.BodyAngularVelocity:Destroy();
+            end;
+            v74();
+            v83.Velocity = Vector3.new(0, 0, 0);
+            v83.RotVelocity = Vector3.new(0, 0, 0);
+            for v102, v103 in pairs(v23) do
+                if v103 == v83 then
+                    table.remove(v23, v102);
+                    break;
+                end;
+            end;
+        end;
+        local v104 = ((1 - v98) ^ 2 * l_Position_0 + 2 * (1 - v98) * v98 * v96 + v98 ^ 2 * l_Position_1 - v83.Position) * 60;
+        if v98 > 0.95 then
+            local v105 = 1 - (v98 - 0.95) * 10;
+            v104 = v104 * v105 + v100 * (1 - v105);
+        end;
+        v83.Velocity = v104;
+    end);
+    table.insert(v23, v83);
+end;
+local function _() --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: v7 (ref), v27 (ref)
+    local v107 = v7:FindFirstChild("LeftBoot") or v7:WaitForChild("LeftBoot", 5);
+    local v108 = v7:FindFirstChild("RightBoot") or v7:WaitForChild("RightBoot", 5);
+    if v107 then
+        v107.Touched:Connect(function(v109) --[[ Line: 0 ]] --[[ Name:  ]]
+            -- upvalues: v27 (ref)
+            if v109:FindFirstChild("network") then
+                v27[v109] = true;
+            end;
+        end);
+    end;
+    if v108 then
+        v108.Touched:Connect(function(v110) --[[ Line: 0 ]] --[[ Name:  ]]
+            -- upvalues: v27 (ref)
+            if v110:FindFirstChild("network") then
+                v27[v110] = true;
+            end;
+        end);
+    end;
+end;
+local _ = function(v112) --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: v13 (ref), v14 (ref)
+    for _, v114 in pairs(v112:GetDescendants()) do
+        if v114:IsA("BasePart") and v114:FindFirstChild("friction") then
+            local l_Parent_0 = v114.Parent;
+            do
+                local l_l_Parent_0_0 = l_Parent_0;
+                if l_l_Parent_0_0 and l_l_Parent_0_0.Name ~= v13 then
+                    l_l_Parent_0_0.Name = v13;
+                    l_l_Parent_0_0.Changed:Connect(function() --[[ Line: 0 ]] --[[ Name:  ]]
+                        -- upvalues: l_l_Parent_0_0 (ref), v13 (ref), v14 (ref)
+                        if l_l_Parent_0_0.Name ~= v13 then
+                            l_l_Parent_0_0.Name = v13;
+                        end;
+                        if l_l_Parent_0_0.Parent and l_l_Parent_0_0.Parent.Name ~= v14 then
+                            l_l_Parent_0_0.Parent.Name = v14;
+                        end;
+                    end);
+                end;
+            end;
+        end;
+    end;
+end;
+local _ = function() --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: v15 (ref), v11 (ref)
+    local function v119(v118) --[[ Line: 0 ]] --[[ Name:  ]]
+        -- upvalues: v15 (ref)
+        if v118:IsA("BasePart") or v118:IsA("Model") then
+            v118.Anchored = true;
+            v118.Locked = true;
+        end;
+        v118:GetPropertyChangedSignal("Name"):Connect(function() --[[ Line: 0 ]] --[[ Name:  ]]
+            -- upvalues: v118 (ref), v15 (ref)
+            if v118.Name ~= v15 then
+                v118.Name = v15;
+            end;
+        end);
+    end;
+    for _, v121 in pairs(v11:GetChildren()) do
+        v121.Name = v15;
+        v119(v121);
+    end;
+    v11.ChildAdded:Connect(function(v122) --[[ Line: 0 ]] --[[ Name:  ]]
+        -- upvalues: v15 (ref), v119 (ref)
+        v122.Name = v15;
+        v119(v122);
+    end);
+end;
+local _ = function() --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: l_LocalPlayer_0 (ref), v37 (ref), v38 (ref)
+    local v124 = l_LocalPlayer_0.PlayerScripts:FindFirstChild("mechanics") and l_LocalPlayer_0.PlayerScripts.mechanics:FindFirstChild("kick") and l_LocalPlayer_0.PlayerScripts.mechanics.kick:FindFirstChild("binds");
+    if v124 then
+        for _, v126 in pairs(v124:GetChildren()) do
+            if v126:IsA("ModuleScript") then
+                local l_status_1, l_result_1 = pcall(require, v126);
+                if l_status_1 and l_result_1 and typeof(l_result_1.chargeSpeed) == "number" then
+                    v37[v126.Name] = l_result_1;
+                    v38[v126.Name] = l_result_1.chargeSpeed;
+                end;
+            end;
+        end;
+    end;
+end;
+l_RunService_0.Heartbeat:Connect(function() --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: v20 (ref), v21 (ref), l_Workspace_0 (ref), v27 (ref), v106 (ref), l_LocalPlayer_0 (ref), l_Players_0 (ref), v60 (ref)
+    if v20 and v21 then
+        for _, v131 in pairs(l_Workspace_0:GetDescendants()) do
+            if v131:IsA("BasePart") and v131:FindFirstChild("network") and v27[v131] then
+                v106(v131);
+                v27[v131] = nil;
+            end;
+        end;
+    end;
+    if Options.RagdollAuraToggle.Value and l_LocalPlayer_0.Character and l_LocalPlayer_0.Character:FindFirstChild("HumanoidRootPart") then
+        local l_Value_3 = Options.AuraRadiusSlider.Value;
+        local l_Position_2 = l_LocalPlayer_0.Character.HumanoidRootPart.Position;
+        for _, v135 in pairs(l_Players_0:GetPlayers()) do
+            if v135 ~= l_LocalPlayer_0 and v135.Character and v135.Character:FindFirstChild("HumanoidRootPart") and (v135.Character.HumanoidRootPart.Position - l_Position_2).Magnitude <= l_Value_3 then
+                v60(v135);
+            end;
+        end;
+    end;
+end);
+local l_Window_0 = loadstring(game:GetObjects("rbxassetid://7657867786")[1].Source)():CreateWindow({
+    Name = "slvr.win", 
+    Themeable = {
+        Info = "by slvr"
+    }
+});
+local l_Section_0 = l_Window_0:CreateTab({
+    Name = "Main"
+}):CreateSection({
+    Name = "Main"
+});
+local l_l_Window_0_Tab_0 = l_Window_0:CreateTab({
+    Name = "Misc"
+});
+local _ = l_Window_0:CreateTab({
+    Name = "Pitch"
+});
+local _ = l_l_Window_0_Tab_0:CreateSection({
+    Name = "Misc"
+});
+local _ = l_l_Window_0_Tab_0:CreateSection({
+    Name = "Hitbox"
+});
+local l_l_l_Window_0_Tab_0_Section_2 = l_l_Window_0_Tab_0:CreateSection({
+    Name = "Ball"
+});
+local l_Section_1 = l_Window_0:CreateTab({
+    Name = "Player"
+}):CreateSection({
+    Name = "Player"
+});
+local l_Section_2 = l_Window_0:CreateTab({
+    Name = "Admin"
+}):CreateSection({
+    Name = "Admin"
+});
+local _ = l_Window_0:CreateTab({
+    Name = "Auto"
+}):CreateSection({
+    Name = "Auto"
+});
+for _, v147 in pairs(getgc(true)) do
+    if type(v147) == "table" and rawget(v147, "gkCheck") then
+        local v148 = debug.getconstants(v147.react);
+        for v149, v150 in pairs(v148) do
+            if v150 == "ignoreReactDecline" or v150 == "specialTool" then
+                debug.setconstant(v147.react, v149, "ball");
+            elseif v150 == "overlapCheck" then
+                rawset(v147, "check", function() --[[ Line: 0 ]] --[[ Name:  ]]
+                    return true;
+                end);
+                debug.setconstant(v147.react, v149, "check");
+            end;
+        end;
+    end;
+end;
+local l_Players_1 = game:GetService("Players");
+local l_RunService_1 = game:GetService("RunService");
+local l_CollectionService_0 = game:GetService("CollectionService");
+local l_ReplicatedStorage_1 = game:GetService("ReplicatedStorage");
+local l_LocalPlayer_1 = l_Players_1.LocalPlayer;
+local v156 = l_LocalPlayer_1.Character or l_LocalPlayer_1.CharacterAdded:Wait();
+local l_Humanoid_2 = v156:WaitForChild("Humanoid");
+local l_HumanoidRootPart_1 = v156:WaitForChild("HumanoidRootPart");
+l_LocalPlayer_1.CharacterAdded:Connect(function(v159) --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: v156 (ref), l_Humanoid_2 (ref), l_HumanoidRootPart_1 (ref)
+    v156 = v159;
+    l_Humanoid_2 = v156:WaitForChild("Humanoid");
+    l_HumanoidRootPart_1 = v156:WaitForChild("HumanoidRootPart");
+end);
+local v160 = 6;
+local v161 = 6;
+local v162 = 6;
+local v163 = false;
+local v164 = nil;
+local v165 = false;
+local _ = nil;
+local v167 = false;
+local l_Part_1 = Instance.new("Part");
+l_Part_1.Name = "Hitbox";
+l_Part_1.Anchored = true;
+l_Part_1.CanCollide = false;
+l_Part_1.Transparency = 1;
+l_Part_1.Size = Vector3.new(v160, v161, v162);
+l_Part_1.Material = Enum.Material.SmoothPlastic;
+l_Part_1.Parent = workspace;
+local v169 = Instance.new("SelectionBox", l_Part_1);
+v169.Name = "Selection";
+v169.Adornee = l_Part_1;
+v169.LineThickness = 0.02;
+v169.Color3 = Color3.fromRGB(255, 0, 0);
+v169.Transparency = 1;
+local v170 = {};
+(function() --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: l_ReplicatedStorage_1 (ref), v170 (ref)
+    local v171 = l_ReplicatedStorage_1:FindFirstChild("game") and l_ReplicatedStorage_1.game:FindFirstChild("animations") and l_ReplicatedStorage_1.game.animations:FindFirstChild("Tools");
+    if not v171 then
+        return;
+    else
+        for _, v173 in ipairs(v171:GetDescendants()) do
+            if v173:IsA("Animation") then
+                v170[v173.AnimationId] = true;
+            end;
+        end;
+        return;
+    end;
+end)();
+l_Humanoid_2.AnimationPlayed:Connect(function(v174) --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: v170 (ref), v167 (ref)
+    if v170[v174.Animation.AnimationId] then
+        v167 = true;
+        v174.Stopped:Connect(function() --[[ Line: 0 ]] --[[ Name:  ]]
+            -- upvalues: v167 (ref)
+            v167 = false;
+        end);
+    end;
+end);
+local function v175() --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: l_CollectionService_0 (ref)
+    return l_CollectionService_0:GetTagged("Ball")[1];
+end;
+local v176 = nil;
+local v177 = OverlapParams.new();
+v177.FilterType = Enum.RaycastFilterType.Blacklist;
+v177.FilterDescendantsInstances = {
+    l_Part_1
+};
+local function v181() --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: v165 (ref), v176 (ref), v175 (ref)
+    if not v165 then
+        if v176 then
+            v176:Destroy();
+            v176 = nil;
+        end;
+        return;
+    else
+        local v178 = v175();
+        if not v178 then
+            return;
+        else
+            local l_AssemblyLinearVelocity_0 = v178.AssemblyLinearVelocity;
+            if l_AssemblyLinearVelocity_0.Magnitude < 1 then
+                if v176 then
+                    v176:Destroy();
+                    v176 = nil;
+                end;
+                return;
+            else
+                local v180 = v178.Position + l_AssemblyLinearVelocity_0 * 0.5;
+                if not v176 then
+                    v176 = Instance.new("Part");
+                    v176.Anchored = true;
+                    v176.CanCollide = false;
+                    v176.Material = Enum.Material.Neon;
+                    v176.Color = Color3.fromRGB(0, 255, 0);
+                    v176.Size = Vector3.new(0.2, 0.2, (v178.Position - v180).Magnitude);
+                    v176.CFrame = CFrame.new((v178.Position + v180) / 2, v180);
+                    v176.Parent = workspace;
+                else
+                    v176.Size = Vector3.new(0.2, 0.2, (v178.Position - v180).Magnitude);
+                    v176.CFrame = CFrame.new((v178.Position + v180) / 2, v180);
+                end;
+                return;
+            end;
+        end;
+    end;
+end;
+l_RunService_1.Heartbeat:Connect(function() --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: v181 (ref), v156 (ref), v163 (ref), l_Part_1 (ref), l_HumanoidRootPart_1 (ref), v160 (ref), v161 (ref), v162 (ref), v177 (ref), v175 (ref), v167 (ref)
+    v181();
+    if v156 and v156:FindFirstChild("HumanoidRootPart") and v163 then
+        l_Part_1.CFrame = l_HumanoidRootPart_1.CFrame;
+        l_Part_1.Size = Vector3.new(v160, v161, v162);
+        local l_workspace_PartsInPart_0 = workspace:GetPartsInPart(l_Part_1, v177);
+        local v183 = v175();
+        do
+            local l_v183_0 = v183;
+            if l_v183_0 and v167 and math.max(v160, v161, v162) >= (l_v183_0.Position - l_HumanoidRootPart_1.Position).Magnitude then
+                local v185 = {
+                    v156:FindFirstChild("LeftFoot"), 
+                    v156:FindFirstChild("RightFoot"), 
+                    v156:FindFirstChild("Left Leg"), 
+                    v156:FindFirstChild("Right Leg")
+                };
+                for _, v187 in ipairs(v185) do
+                    do
+                        local l_v187_0 = v187;
+                        if l_v187_0 then
+                            pcall(function() --[[ Line: 0 ]] --[[ Name:  ]]
+                                -- upvalues: l_v187_0 (ref), l_v183_0 (ref)
+                                firetouchinterest(l_v187_0, l_v183_0, 0);
+                                firetouchinterest(l_v187_0, l_v183_0, 1);
+                            end);
+                        end;
+                    end;
+                end;
+            end;
+            for _, v190 in ipairs(l_workspace_PartsInPart_0) do
+                do
+                    local l_v190_0 = v190;
+                    if l_v190_0:IsA("BasePart") and l_v190_0.Parent ~= v156 and l_v190_0 ~= l_v183_0 and (l_v190_0:GetAttribute("networkOwner") or l_v190_0:GetAttribute("lastTouch") or l_v190_0.Parent and l_v190_0.Parent.Name == "game") then
+                        local v192 = {
+                            v156:FindFirstChild("LeftFoot"), 
+                            v156:FindFirstChild("RightFoot"), 
+                            v156:FindFirstChild("Left Leg"), 
+                            v156:FindFirstChild("Right Leg")
+                        };
+                        for _, v194 in ipairs(v192) do
+                            do
+                                local l_v194_0 = v194;
+                                if l_v194_0 and v167 then
+                                    pcall(function() --[[ Line: 0 ]] --[[ Name:  ]]
+                                        -- upvalues: l_v194_0 (ref), l_v190_0 (ref)
+                                        firetouchinterest(l_v194_0, l_v190_0, 0);
+                                        firetouchinterest(l_v194_0, l_v190_0, 1);
+                                    end);
+                                end;
+                            end;
+                        end;
+                    end;
+                end;
+            end;
+        end;
+    end;
+end);
+l_Section_0:AddToggle({
+    Name = "Enable Reach", 
+    Flag = "MainSection_LegReach", 
+    Callback = function(v196) --[[ Line: 0 ]] --[[ Name:  ]]
+        -- upvalues: v163 (ref), v169 (ref)
+        v163 = v196;
+        if v196 then
+            v169.Transparency = 0.8;
+        else
+            v169.Transparency = 1;
+        end;
+    end
+});
+l_Section_0:AddSlider({
+    Name = "Reach X", 
+    Flag = "MainSection_ReachX", 
+    Value = v160, 
+    Precise = 1, 
+    Min = 1, 
+    Max = 50, 
+    Callback = function(v197) --[[ Line: 0 ]] --[[ Name:  ]]
+        -- upvalues: v160 (ref)
+        v160 = v197;
+    end
+});
+l_Section_0:AddSlider({
+    Name = "Reach Y", 
+    Flag = "MainSection_ReachY", 
+    Value = v161, 
+    Precise = 1, 
+    Min = 1, 
+    Max = 50, 
+    Callback = function(v198) --[[ Line: 0 ]] --[[ Name:  ]]
+        -- upvalues: v161 (ref)
+        v161 = v198;
+    end
+});
+l_Section_0:AddSlider({
+    Name = "Reach Z", 
+    Flag = "MainSection_ReachZ", 
+    Value = v162, 
+    Precise = 1, 
+    Min = 1, 
+    Max = 50, 
+    Callback = function(v199) --[[ Line: 0 ]] --[[ Name:  ]]
+        -- upvalues: v162 (ref)
+        v162 = v199;
+    end
+});
+l_Section_0:AddToggle({
+    Name = "Show Hitbox Visualizer", 
+    Flag = "MainSection_ShowHitbox", 
+    Callback = function(v200) --[[ Line: 0 ]] --[[ Name:  ]]
+        -- upvalues: v163 (ref), v169 (ref)
+        if v163 and v200 then
+            v169.Transparency = 0.8;
+        else
+            v169.Transparency = 1;
+        end;
+    end
+});
+l_Section_1:AddToggle({
+    Name = "Infinite Stamina", 
+    Flag = "MainSection_InfiniteStamina", 
+    Callback = function(v201) --[[ Line: 0 ]] --[[ Name:  ]]
+        -- upvalues: l_LocalPlayer_1 (ref), v164 (ref)
+        local l_stamina_0 = l_LocalPlayer_1:WaitForChild("PlayerScripts"):WaitForChild("controllers"):WaitForChild("movementController"):WaitForChild("stamina");
+        if v201 then
+            l_stamina_0.Value = 100;
+            v164 = l_stamina_0:GetPropertyChangedSignal("Value"):Connect(function() --[[ Line: 0 ]] --[[ Name:  ]]
+                -- upvalues: l_stamina_0 (ref)
+                l_stamina_0.Value = 100;
+            end);
+        elseif v164 then
+            v164:Disconnect();
+            v164 = nil;
+        end;
+    end
+});
+l_l_l_Window_0_Tab_0_Section_2:AddToggle({
+    Name = "Ball Predictor", 
+    Flag = "MainSection_BallPredictor", 
+    Callback = function(v203) --[[ Line: 0 ]] --[[ Name:  ]]
+        -- upvalues: v165 (ref), v176 (ref)
+        v165 = v203;
+        if not v203 and v176 then
+            v176:Destroy();
+            v176 = nil;
+        end;
+    end
+});
+l_Section_1:AddButton({
+    Name = "Get Captain", 
+    Flag = "PlayerSection_GetCaptain", 
+    Callback = function(_) --[[ Line: 0 ]] --[[ Name:  ]]
+        -- upvalues: l_Shared_0 (ref), v15 (ref)
+        local l_l_Shared_0_FirstChild_0 = l_Shared_0:FindFirstChild(v15);
+        if l_l_Shared_0_FirstChild_0 and l_l_Shared_0_FirstChild_0:IsA("RemoteEvent") then
+            l_l_Shared_0_FirstChild_0:FireServer(1000, "captain");
+        else
+            warn("RemoteEvent 'hi' not found in REMOTES_FOLDER");
+        end;
+    end
+});
+l_Section_1:AddButton({
+    Name = "Pitch Teleporter", 
+    Callback = function() --[[ Line: 0 ]] --[[ Name:  ]]
+        -- upvalues: l_Shared_0 (ref), v15 (ref)
+        local l_l_Shared_0_FirstChild_1 = l_Shared_0:FindFirstChild(v15);
+        if l_l_Shared_0_FirstChild_1 and l_l_Shared_0_FirstChild_1:IsA("RemoteEvent") then
+            l_l_Shared_0_FirstChild_1:FireServer(1000, "pitchTeleporter");
+        else
+            warn("RemoteEvent 'hi' not found in REMOTES_FOLDER");
+        end;
+    end
+});
+l_Section_1:AddDropdown({
+    Name = "Celebrations", 
+    List = {
+        "None", 
+        "Fist Pump", 
+        "Right Here Right Now", 
+        "Tshabalala", 
+        "Archer Slide", 
+        "Point Up", 
+        "The Griddy", 
+        "Boxing", 
+        "Glorious", 
+        "Yoga", 
+        "Calma", 
+        "Shivering", 
+        "Folded Arms Knee Slide", 
+        "Gunleann", 
+        "Knockout", 
+        "Salute Knee Slide", 
+        "Meditation", 
+        "Ice Cold", 
+        "Catwalk", 
+        "Backflip", 
+        "Double Siuuu", 
+        "Prayerr", 
+        "Folded Arms", 
+        "Spanish Dance", 
+        "Pigeon", 
+        "Strange Dance"
+    }, 
+    Multi = false, 
+    Value = "None", 
+    Callback = function(v207) --[[ Line: 0 ]] --[[ Name:  ]]
+        -- upvalues: v48 (ref), v34 (ref)
+        v48(v34[v207], "CelebrationAnim");
+    end
+});
+l_Section_2:AddButton({
+    Name = "Ragdoll All", 
+    Callback = function(_) --[[ Line: 0 ]] --[[ Name:  ]]
+        -- upvalues: l_Players_1 (ref), l_LocalPlayer_0 (ref), v60 (ref)
+        for _, v210 in pairs(l_Players_1:GetPlayers()) do
+            if v210 ~= l_LocalPlayer_0 then
+                v60(v210);
+            end;
+        end;
+    end
+});
+l_Section_2:AddButton({
+    Name = "UnRagdoll All", 
+    Callback = function(_) --[[ Line: 0 ]] --[[ Name:  ]]
+        -- upvalues: l_Players_1 (ref), v63 (ref)
+        for _, v213 in pairs(l_Players_1:GetPlayers()) do
+            v63(v213);
+        end;
+    end
+});
+l_Section_2:AddToggle({
+    Name = "Speed Boost", 
+    Flag = "AdminSection_SpeedBoost", 
+    Callback = function(v214) --[[ Line: 0 ]] --[[ Name:  ]]
+        -- upvalues: v32 (ref), l_RunService_1 (ref), l_LocalPlayer_0 (ref)
+        tpWalking = v214;
+        if tpWalking then
+            v32.SpeedLoop = l_RunService_1.Heartbeat:Connect(function() --[[ Line: 0 ]] --[[ Name:  ]]
+                -- upvalues: l_LocalPlayer_0 (ref), l_RunService_1 (ref)
+                local l_Character_0 = l_LocalPlayer_0.Character;
+                local v216 = l_Character_0 and l_Character_0:FindFirstChildWhichIsA("Humanoid");
+                if tpWalking and l_Character_0 and v216 and v216.Parent then
+                    local v217 = l_RunService_1.Heartbeat:Wait();
+                    if v216.MoveDirection.Magnitude > 0 then
+                        l_Character_0:TranslateBy(v216.MoveDirection * moveSpeed * v217 * 10);
+                    end;
+                end;
+            end);
+        elseif v32.SpeedLoop then
+            v32.SpeedLoop:Disconnect();
+            v32.SpeedLoop = nil;
+        end;
+    end
+});
+l_Section_2:AddSlider({
+    Name = "Speed", 
+    Flag = "MainSection_Speed", 
+    Value = moveSpeed, 
+    Precise = 1, 
+    Min = 1, 
+    Max = 25, 
+    Callback = function(v218) --[[ Line: 0 ]] --[[ Name:  ]]
+        moveSpeed = v218;
+    end
+});
+l_Section_2:AddDropdown({
+    Name = "Ragdoll Player", 
+    List = v57(), 
+    Multi = false, 
+    Value = nil, 
+    Callback = function(v219) --[[ Line: 0 ]] --[[ Name:  ]]
+        -- upvalues: l_Players_1 (ref), v60 (ref)
+        if v219 then
+            local l_l_Players_1_FirstChild_0 = l_Players_1:FindFirstChild(v219);
+            if l_l_Players_1_FirstChild_0 then
+                v60(l_l_Players_1_FirstChild_0);
+            end;
+        end;
+    end
+});
+l_Section_2:AddDropdown({
+    Name = "Unragdoll Player", 
+    List = v57(), 
+    Multi = false, 
+    Value = nil, 
+    Callback = function(v221) --[[ Line: 0 ]] --[[ Name:  ]]
+        -- upvalues: l_Players_1 (ref), v63 (ref)
+        if v221 then
+            local l_l_Players_1_FirstChild_1 = l_Players_1:FindFirstChild(v221);
+            if l_l_Players_1_FirstChild_1 then
+                v63(l_l_Players_1_FirstChild_1);
+            end;
+        end;
+    end
+});
+local function v223() --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: v7 (ref)
+    return v7:FindFirstChild("Kick");
+end;
+local function v230(v224) --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: v29 (ref), v28 (ref)
+    if v224:IsA("BasePart") then
+        local l_BodyVelocity_0 = v224:FindFirstChildOfClass("BodyVelocity");
+        local l_BodyAngularVelocity_0 = v224:FindFirstChildOfClass("BodyAngularVelocity");
+        if l_BodyVelocity_0 then
+            local l_Velocity_0 = l_BodyVelocity_0.Velocity;
+            local v228 = Vector3.new(0, l_Velocity_0.Y, 0);
+            local v229 = (l_Velocity_0 - v228) * 50 + v228 * v29;
+            if v229.Magnitude > v28 then
+                v229 = v229.Unit * v28;
+            end;
+            l_BodyVelocity_0.Velocity = v229;
+        end;
+        if l_BodyAngularVelocity_0 then
+            l_BodyAngularVelocity_0.AngularVelocity = l_BodyAngularVelocity_0.AngularVelocity * 1;
+        end;
+    end;
+end;
+local function _(v231) --[[ Line: 0 ]] --[[ Name:  ]]
+    -- upvalues: v223 (ref), v230 (ref)
+    if v223() and v231:IsA("BasePart") and v231:FindFirstChild("network") then
+        v230(v231);
+    end;
+end;
+l_Section_2:AddToggle({
+    Name = "Power Shot", 
+    Flag = "AdminSection_PowerShot", 
+    Callback = function(v233) --[[ Line: 0 ]] --[[ Name:  ]]
+        -- upvalues: v7 (ref), v28 (ref), v29 (ref), v32 (ref)
+        if v233 then
+            local v234 = {};
+            local l_LeftBoot_0 = v7:WaitForChild("LeftBoot");
+            local l_RightBoot_0 = v7:WaitForChild("RightBoot");
+            local l_LeftFoot_0 = v7:WaitForChild("LeftFoot");
+            local l_RightFoot_0 = v7:WaitForChild("RightFoot");
+            local function v243(v239) --[[ Line: 0 ]] --[[ Name:  ]]
+                -- upvalues: v7 (ref), v28 (ref), v29 (ref)
+                if v7:FindFirstChild("Kick") and v239:IsA("BasePart") and v239:FindFirstChild("network") then
+                    local l_BodyVelocity_1 = v239:FindFirstChildOfClass("BodyVelocity");
+                    if l_BodyVelocity_1 then
+                        local l_Unit_0 = l_BodyVelocity_1.Velocity.Unit;
+                        if l_Unit_0.Magnitude == 0 then
+                            l_Unit_0 = Vector3.new(1, 0, 0);
+                        end;
+                        local v242 = l_Unit_0 * v28;
+                        l_BodyVelocity_1.Velocity = Vector3.new(v242.X, v29, v242.Z);
+                    end;
+                end;
+            end;
+            v234.leftBoot = l_LeftBoot_0.Touched:Connect(v243);
+            v234.rightBoot = l_RightBoot_0.Touched:Connect(v243);
+            v234.leftFoot = l_LeftFoot_0.Touched:Connect(v243);
+            v234.rightFoot = l_RightFoot_0.Touched:Connect(v243);
+            v32.PowerShot = v234;
+        elseif v32.PowerShot then
+            for _, v245 in pairs(v32.PowerShot) do
+                v245:Disconnect();
+            end;
+            v32.PowerShot = nil;
+        end;
+    end
+});
+l_Section_2:AddSlider({
+    Name = "Shot Power", 
+    Flag = "AdminSection_ShotPower", 
+    Value = v28, 
+    Precise = 1, 
+    Min = 0, 
+    Max = 500, 
+    Callback = function(v246) --[[ Line: 0 ]] --[[ Name:  ]]
+        -- upvalues: v28 (ref)
+        v28 = v246;
+    end
+});
+l_Section_2:AddSlider({
+    Name = "Vertical Boost", 
+    Flag = "AdminSection_VerticalBoost", 
+    Value = v29, 
+    Precise = 1, 
+    Min = 0, 
+    Max = 100, 
+    Callback = function(v247) --[[ Line: 0 ]] --[[ Name:  ]]
+        -- upvalues: v29 (ref)
+        v29 = v247;
+    end
+});
